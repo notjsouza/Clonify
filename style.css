@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #000000;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 25px;
+  width: 400px;
+  height: 24px;
+  background: #121212;
+  padding: 24px;
+}
