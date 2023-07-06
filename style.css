@@ -175,13 +175,13 @@ body {
   padding: 14px 30px;
   margin-left: 440px;
   margin-right: 16px;
-  background-color: #1e1e1e;
+  background: linear-gradient(to bottom, #1e1e1e, #121212);
 }
 
 .spotify-playlists h2 {
   color: #ffffff;
   font-size: 22px;
-  margin-bottom: 20px;
+  padding: 0px -300px;
 }
 
 .spotify-playlists .list {
