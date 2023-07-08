@@ -96,7 +96,7 @@ getCurrentProfile();
 </script>
 
 <template>
-  <div class="sidebar">
+  <div class="sidebar-top">
     
     <div class="navigation">
       <ul>
@@ -115,7 +115,9 @@ getCurrentProfile();
         </li>
       </ul>
     </div>
+  </div>
 
+  <div class="sidebar-bot">
     <div class="navigation">
       <ul>
         <li>
@@ -125,6 +127,26 @@ getCurrentProfile();
           </a>
         </li>
       </ul>
+    </div>
+
+    <div class="create-playlist">
+      <div class="text">
+        <h6>Create your first playlist</h6>
+        <p>It's easy, we'll help you</p>
+      </div>
+      <div class="button">
+        <button>Create playlist</button>
+      </div>
+    </div>
+
+    <div class="browse-podcast">
+      <div class="text">
+        <h6>Let's find some podcasts to follow</h6>
+        <p>We'll keep you updated on new episodes</p>
+      </div>
+      <div class="button">
+        <button>Browse podcasts</button>
+      </div>
     </div>
 
     <div class="policies">
@@ -236,12 +258,13 @@ getCurrentProfile();
 </template>
 
 <style scoped>
-.sidebar {
+.sidebar-top {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   width: 425px;
+  height: 150px;
   background: #121212;
   padding: 24px;
   margin-top: 8px;
@@ -249,67 +272,118 @@ getCurrentProfile();
   border-radius: 10px;
 }
 
-.sidebar .navigation ul {
+.sidebar-top .navigation ul {
   list-style: none;
 }
 
-.sidebar .navigation ul li {
-  padding: 12px 0px;
+.sidebar-top .navigation ul li {
+  padding: 8px 0px;
 }
 
-.sidebar .navigation ul li a {
+.sidebar-top .navigation ul li a {
   color: #b3b3b3;
   text-decoration: none;
   font-weight: bold;
   font-size: 21px;
 }
 
-.sidebar .navigation ul li a:hover,
-.sidebar .navigation ul li a:active,
-.sidebar .navigation ul li a:focus {
+.sidebar-top .navigation ul li a:hover,
+.sidebar-top .navigation ul li a:active,
+.sidebar-top .navigation ul li a:focus {
   color: #ffffff;
 }
 
-.sidebar .navigation ul li a:hover .fa,
-.sidebar .navigation ul li a:active .fa,
-.sidebar .navigation ul li a:focus .fa {
+.sidebar-top .navigation ul li a:hover .fa,
+.sidebar-top .navigation ul li a:active .fa,
+.sidebar-top .navigation ul li a:focus .fa {
   color: #ffffff;
 }
 
-.sidebar .navigation ul li .fa {
+.sidebar-top .navigation ul li .fa {
   font-size: 20px;
   margin-right: 10px;
 }
 
-.sidebar .navigation ul li a:hover .fa:hover,
-.sidebar .navigation ul li a:active .fa:active,
-.sidebar .navigation ul li a:focus .fa:focus {
+.sidebar-top .navigation ul li a:hover .fa:hover,
+.sidebar-top .navigation ul li a:active .fa:active,
+.sidebar-top .navigation ul li a:focus .fa:focus {
   color: #ffffff;
 }
 
-.sidebar .policies {
+.sidebar-bot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 425px;
+  background: #121212;
+  padding: 24px;
+  margin-top: 168px;
+  margin-left: 8px;
+  border-radius: 10px;
+}
+
+.sidebar-bot .navigation ul {
+  list-style: none;
+}
+
+.sidebar-bot .navigation ul li {
+  padding: 12px 0px;
+}
+
+.sidebar-bot .navigation ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 21px;
+}
+
+.sidebar-bot .navigation ul li a:hover,
+.sidebar-bot .navigation ul li a:active,
+.sidebar-bot .navigation ul li a:focus {
+  color: #ffffff;
+}
+
+.sidebar-bot .navigation ul li a:hover .fa,
+.sidebar-bot .navigation ul li a:active .fa,
+.sidebar-bot .navigation ul li a:focus .fa {
+  color: #ffffff;
+}
+
+.sidebar-bot .navigation ul li .fa {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.sidebar-bot .navigation ul li a:hover .fa:hover,
+.sidebar-bot .navigation ul li a:active .fa:active,
+.sidebar-bot .navigation ul li a:focus .fa:focus {
+  color: #ffffff;
+}
+
+.sidebar-bot .policies {
   position: absolute;
   bottom: 100px;
 }
 
-.sidebar .policies ul {
+.sidebar-bot .policies ul {
   list-style: none;
 }
 
-.sidebar .policies ul li {
+.sidebar-bot .policies ul li {
   padding-bottom: 5px;
 }
 
-.sidebar .policies ul li a {
+.sidebar-bot .policies ul li a {
   color: #b3b3b3;
   font-weight: 500;
   text-decoration: none;
   font-size: 12px;
 }
 
-.sidebar .policies ul li a:hover,
-.sidebar .policies ul li a:active,
-.sidebar .policies ul li a:focus {
+.sidebar-top .policies ul li a:hover,
+.sidebar-top .policies ul li a:active,
+.sidebar-top .policies ul li a:focus {
   text-decoration: underline;
 }
 
