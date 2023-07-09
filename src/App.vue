@@ -264,9 +264,9 @@ getCurrentProfile();
   top: 0;
   bottom: 0;
   width: 425px;
-  height: 150px;
+  height: 112px;
   background: #121212;
-  padding: 24px;
+  padding: 4px 24px;
   margin-top: 8px;
   margin-left: 8px;
   border-radius: 10px;
@@ -317,8 +317,8 @@ getCurrentProfile();
   bottom: 0;
   width: 425px;
   background: #121212;
-  padding: 24px;
-  margin-top: 168px;
+  padding: 4px 24px;
+  margin-top: 128px;
   margin-left: 8px;
   border-radius: 10px;
 }
@@ -363,6 +363,7 @@ getCurrentProfile();
 
 .sidebar-bot .policies {
   position: absolute;
+  display: inline;
   bottom: 100px;
 }
 
@@ -372,13 +373,15 @@ getCurrentProfile();
 
 .sidebar-bot .policies ul li {
   padding-bottom: 5px;
+  display: inline-block;
 }
 
 .sidebar-bot .policies ul li a {
   color: #b3b3b3;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   font-size: 12px;
+  padding: 5px;
 }
 
 .sidebar-top .policies ul li a:hover,
@@ -391,6 +394,7 @@ getCurrentProfile();
   display: flex;
   justify-content: space-between;
   background-color: #101010;
+  height: 64px;
   border-radius: 10px;
   padding: 14px 30px;
   margin-top: 8px;

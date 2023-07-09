@@ -8,6 +8,7 @@
 body {
   background: #000000;
   font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -299,7 +300,7 @@ body {
   height: 140px;
   background: #242424;
   padding: 24px;
-  margin-top: 258px;
+  margin-top: 192px;
   margin-left: 16px;  
   border-radius: 10px;
 }
@@ -338,7 +339,7 @@ body {
   height: 140px;
   background: #242424;
   padding: 24px;
-  margin-top: 414px;
+  margin-top: 354px;
   margin-left: 16px;  
   border-radius: 10px;
 }
