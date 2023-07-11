@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 
 let currentUser = ref(undefined);
-let loggedIn = ref(false);
 
 const client_id = '3ba36b13d84d449ca1716fe591eea1e9';
 const redirect_uri = 'http://localhost:5173';
@@ -40,15 +39,11 @@ async function getAccessToken(clientId, code) {
 
     const data = await result.json();
 
-    console.log('access token', data);
-
     return data.access_token;
 
 }
 
 export async function getCurrentUser(){
-    
-    console.log('getting current user...');
 
     if (currentUser.value) {
 
@@ -60,25 +55,26 @@ export async function getCurrentUser(){
     const code = searchParams.get('code');
     const token = await getAccessToken(client_id, code);
 
-    const response = await fetch('https://api.spotify.com/v1/me', {
-        headers: {"Authorization": "Bearer " + token}
-    });
-    const data = await response.json();
-    console.log(data);
+    try {
 
-    if(response.status === 200){
+        const response = await fetch('https://api.spotify.com/v1/me', {
+            headers: {"Authorization": "Bearer " + token}
+        
+        });
+        const data = await response.json();
 
-        loggedIn.value = true;
-        currentUser.value = data;
+        if(response.status === 200){
+
+            currentUser.value = data;
+    
+        }
+    
+    } catch (error) {
+
+        console.log(error);
     
     }
 
     return currentUser.value;
-
-}
-
-export function isLoggedIn(){
-
-    return loggedIn.value;
 
 }

@@ -1,14 +1,5 @@
 <script setup>
 
-/* importing the necessary functions from auth.js */
-import { 
-    isLoggedIn,
-    getCurrentUser
-} from '../auth';
-
-/* importing ref function from vue */
-import { ref } from 'vue';
-
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -25,17 +16,15 @@ import {
 library.add(faChevronLeft);
 library.add(faChevronRight);
 
-/* declares the constant 'currentUser' as an undefined reference */
-const currentUser = ref(undefined);
+</script>
 
-/* initializes currentUser.value with the data from the getCurrentUser function */
-async function init(){
+<script>
 
-    currentUser.value = await getCurrentUser(); 
+export default {
 
-}
+    props: ['user']
 
-init();
+};
 
 </script>
 
@@ -55,7 +44,7 @@ init();
 
           <!-- writing the navbar, display purposes only for the initial login page -->
           <div class="navbar">
-            <ul v-if="!isLoggedIn()">
+            <ul v-if="!user">
               <li>
                 <a href="">Premium</a>
               </li>
@@ -70,12 +59,12 @@ init();
                 <a>Sign up</a>
               </li>
             </ul>
-            <button v-if="!isLoggedIn()">Log in</button>
+            <button v-if="!user">Log in</button>
 
     <!------- EXECUTE IF USER IS LOGGED IN ------->
 
             <!-- grabs the current user's profile picture from the currentUser data -->
-            <img :src="currentUser?.images[0].url" width="32" height="32" v-if="isLoggedIn()"/>
+            <img :src="user?.images[0].url" width="32" height="32" v-if="user"/>
           </div>
         </div>
     </div>

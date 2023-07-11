@@ -1,31 +1,47 @@
 <script setup>
 
 /* import all components */
-import { isLoggedIn } from './auth.js';
 import SidebarTop from './components/SidebarTop.vue';
 import SidebarBot from './components/SidebarBot.vue';
 import MainContainer from './components/MainContainer.vue';
 import GuestPlaylist from './components/GuestPlaylist.vue';
 import PreviewBanner from './components/PreviewBanner.vue';
 import LoginPopup from './components/LoginPopup.vue';
+import UserPlaylist from './components/UserPlaylist.vue';
+
+import { 
+    getCurrentUser
+} from './auth';
+import { ref } from 'vue';
+
+const currentUser = ref(undefined);
+
+/* initializes currentUser.value with the data from the getCurrentUser function */
+async function init(){
+
+    currentUser.value = await getCurrentUser();
+
+}
+
+init();
 
 </script>
 
 <template>
 
   <sidebar-top/>
-  <sidebar-bot/>
-  <main-container/>
+  <sidebar-bot :user="currentUser"/>
+  <main-container :user="currentUser" />
 
   <!-- properties that show only if user isn't logged in -->
-  <div v-if="!isLoggedIn()">
+  <div v-if="!currentUser">
     <guest-playlist/>
     <preview-banner/>
     <login-popup/>
   </div>
 
+  <div>
+    <user-playlist v-if="currentUser"/>
+  </div>
+
 </template>
-
-<style scoped>
-
-</style>

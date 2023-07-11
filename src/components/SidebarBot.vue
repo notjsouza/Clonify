@@ -1,7 +1,5 @@
 <script setup>
 
-import { isLoggedIn } from '../auth';
-
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -13,6 +11,16 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 /* add icons to the library */
 library.add(faBook);
+</script>
+
+<script>
+
+export default {
+
+    props: ['user']
+
+};
+
 </script>
 
 <template>
@@ -31,7 +39,7 @@ library.add(faBook);
     </div>
 
     <!-- creates a subcontainer to hold the create playlist info -->
-    <div class="create-playlist" v-if="!isLoggedIn()">
+    <div class="create-playlist" v-if="!user">
       <div class="text">
         <h6>Create your first playlist</h6>
         <p>It's easy, we'll help you</p>
@@ -42,7 +50,7 @@ library.add(faBook);
     </div>
 
     <!-- creates a subcontainer to hold the browse playlist info -->
-    <div class="browse-podcast" v-if="!isLoggedIn()">
+    <div class="browse-podcast" v-if="!user">
       <div class="text">
         <h6>Let's find some podcasts to follow</h6>
         <p>We'll keep you updated on new episodes</p>
