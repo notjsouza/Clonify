@@ -20,7 +20,8 @@ library.add(faMagnifyingGlass);
 
 <template>
   <div class="sidebar-top">
-      
+    
+    <!-- creates the container to hold the home and search icons and text -->
     <div class="navigation">
       <ul>
         <li>

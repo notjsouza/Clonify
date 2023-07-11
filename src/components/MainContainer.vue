@@ -1,11 +1,12 @@
 <script setup>
 
+/* importing the necessary functions from auth.js */
 import { 
-    login,
     isLoggedIn,
     getCurrentUser
 } from '../auth';
 
+/* importing ref function from vue */
 import { ref } from 'vue';
 
 /* import the fontawesome core */
@@ -24,8 +25,10 @@ import {
 library.add(faChevronLeft);
 library.add(faChevronRight);
 
+/* declares the constant 'currentUser' as an undefined reference */
 const currentUser = ref(undefined);
 
+/* initializes currentUser.value with the data from the getCurrentUser function */
 async function init(){
 
     currentUser.value = await getCurrentUser(); 
@@ -39,6 +42,8 @@ init();
 <template>
     <div class="main-container">
         <div class="topbar">
+
+          <!-- creates the forward and backward buttons on the topbar -->
           <div class="prev-next-buttons">
               <button>
                   <font-awesome-icon :icon="['fas', 'chevron-left']" />
@@ -48,6 +53,7 @@ init();
               </button>
           </div>
 
+          <!-- writing the navbar, display purposes only for the initial login page -->
           <div class="navbar">
             <ul v-if="!isLoggedIn()">
               <li>
@@ -61,10 +67,14 @@ init();
               </li>
               <li class="divider">|</li>
               <li>
-                <a @click="login">Sign up</a>
+                <a>Sign up</a>
               </li>
             </ul>
-            <button @click="login" v-if="!isLoggedIn()">Log in</button>
+            <button v-if="!isLoggedIn()">Log in</button>
+
+    <!------- EXECUTE IF USER IS LOGGED IN ------->
+
+            <!-- grabs the current user's profile picture from the currentUser data -->
             <img :src="currentUser?.images[0].url" width="32" height="32" v-if="isLoggedIn()"/>
           </div>
         </div>

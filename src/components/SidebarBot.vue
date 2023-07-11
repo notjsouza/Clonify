@@ -17,6 +17,8 @@ library.add(faBook);
 
 <template>
   <div class="sidebar-bot">
+
+    <!-- creates the container to hold the library icon and text -->
     <div class="navigation">
       <ul>
         <li>
@@ -28,6 +30,7 @@ library.add(faBook);
       </ul>
     </div>
 
+    <!-- creates a subcontainer to hold the create playlist info -->
     <div class="create-playlist" v-if="!isLoggedIn()">
       <div class="text">
         <h6>Create your first playlist</h6>
@@ -38,6 +41,7 @@ library.add(faBook);
       </div>
     </div>
 
+    <!-- creates a subcontainer to hold the browse playlist info -->
     <div class="browse-podcast" v-if="!isLoggedIn()">
       <div class="text">
         <h6>Let's find some podcasts to follow</h6>
@@ -48,6 +52,7 @@ library.add(faBook);
       </div>
     </div>
 
+    <!-- writes the policies information on the bottom left of the screen -->
     <div class="policies">
       <ul>
         <li>

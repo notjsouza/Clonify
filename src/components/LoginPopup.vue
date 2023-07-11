@@ -1,16 +1,21 @@
 <script setup>
 
+/* imports the login function from auth.js */
 import { login } from '../auth';
 
 </script>
 
 <template>
+
+  <!-- creates the clickable login button to make the api call -->
   <div class="login-popup">
     <div class="text">
       <h6>Login to unlock more features</h6>
       <button @click="login">Log in</button>
     </div>
   </div>
+
+  <!-- covers the rest of the screen in a 0.8 opacity film until user is logged in -->
   <div class="film"></div>
 </template>
 

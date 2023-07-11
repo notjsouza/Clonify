@@ -1,11 +1,6 @@
-<script setup>
-
-import { isLoggedIn } from '../auth';
-
-</script>
-
 <template>
-  <div class="preview" v-if="!isLoggedIn()">
+  <!-- creates the preview banner at the bottom of the screen. purely visual, hides once user is logged in -->
+  <div class="preview">
     <div class="text">
       <h6>Preview of Spotify</h6>
       <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>

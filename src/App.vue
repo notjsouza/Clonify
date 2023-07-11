@@ -16,10 +16,14 @@ import LoginPopup from './components/LoginPopup.vue';
   <sidebar-top/>
   <sidebar-bot/>
   <main-container/>
-  <guest-playlist/>
-  <preview-banner/>
-  <login-popup v-if="!isLoggedIn()"/>
-  
+
+  <!-- properties that show only if user isn't logged in -->
+  <div v-if="!isLoggedIn()">
+    <guest-playlist/>
+    <preview-banner/>
+    <login-popup/>
+  </div>
+
 </template>
 
 <style scoped>

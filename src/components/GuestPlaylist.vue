@@ -1,7 +1,5 @@
 <script setup>
 
-import { isLoggedIn } from '../auth';
-
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -16,10 +14,11 @@ library.add(faPlay);
 </script>
 
 <template>
-  <div class="spotify-playlists" v-if="!isLoggedIn()">
+  <div class="spotify-playlists">
 
   <h2>Focus</h2>
 
+  <!-- creates all the playlists, purely visual. hides them all once user is logged in -->
   <div class="list">
     <div class="item">
       <div class="item-image">
