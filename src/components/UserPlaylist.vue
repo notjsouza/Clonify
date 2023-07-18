@@ -12,26 +12,41 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 /* add icons to the library */
 library.add(faPlay);
 
+import { getPlaylist } from '../auth';
+import { ref } from 'vue';
+
+const playlists = ref(undefined);
+
+async function init(){
+
+    playlists.value = await getPlaylist();
+  
+}
+
+init();
+console.log(playlists);
+
 </script>
 
 <template>
   <div class="spotify-playlists">
 
-  <h2>Focus</h2>
+    <h2>Your playlists</h2>
 
-  <!-- creates all the playlists, purely visual. hides them all once user is logged in -->
-  <div class="list">
-    <div class="item">
-      <div class="item-image">
-          <img src="img/1.jpg"/>
-          <div class="play">
-              <font-awesome-icon :icon="['fas', 'play']" />
-          </div>
+    <!-- creates the top 6 playlists with data from the user's spotify  -->
+    <div class="list">
+      <div class="item" v-for="i in 6" :key="playlists?.items[i].id">
+        <div class="item-image">
+            <p>image {{i-1}}</p>
+            <img :src="playlists?.items[i].images[i].url"/>
+            <div class="play">
+                <font-awesome-icon :icon="['fas', 'play']" />
+            </div>
+        </div>
+        <h4>{{playlists?.items[i].name}}</h4>
       </div>
-      <h4>Peaceful Piano</h4>
-      <p>Peaceful piano to help you slow down,...</p>
     </div>
-  </div>
+
   </div>
 </template>
 
@@ -59,20 +74,20 @@ library.add(faPlay);
 
 .spotify-playlists .list .item {
   min-width: 140px;
-  width: 185px;
+  width: 325px;
   padding: 15px;
-  background-color: #181818;
+  background-color: #29302d;
   border-radius: 6px;
   cursor: pointer;
   transition: all ease 0.4s;
 }
 
 .spotify-playlists .list .item:hover {
-  background-color: #252525;
+  background-color: #414845;
 }
 
 .spotify-playlists .list .item img {
-  width: 100%;
+  width: 25%;
   border-radius: 6px;
   margin-bottom: 10px;
 }
@@ -104,18 +119,11 @@ library.add(faPlay);
 
 .spotify-playlists .list .item h4 {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   margin: 10px 0px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.spotify-playlists .list .item p {
-  color: #989898;
-  font-size: 13px;
-  line-height: 20px;
-  font-weight: 600;
 }
 </style>

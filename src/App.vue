@@ -9,9 +9,7 @@ import PreviewBanner from './components/PreviewBanner.vue';
 import LoginPopup from './components/LoginPopup.vue';
 import UserPlaylist from './components/UserPlaylist.vue';
 
-import { 
-    getCurrentUser
-} from './auth';
+import { getCurrentUser } from './auth';
 import { ref } from 'vue';
 
 const currentUser = ref(undefined);
@@ -25,6 +23,8 @@ async function init(){
 
 init();
 
+console.log(currentUser);
+
 </script>
 
 <template>
@@ -33,15 +33,16 @@ init();
   <sidebar-bot :user="currentUser"/>
   <main-container :user="currentUser" />
 
-  <!-- properties that show only if user isn't logged in -->
+  <!-- properties that show if user IS NOT logged in -->
   <div v-if="!currentUser">
     <guest-playlist/>
     <preview-banner/>
     <login-popup/>
   </div>
 
-  <div>
-    <user-playlist v-if="currentUser"/>
+  <!-- properties display if the user IS logged in -->
+  <div v-if="currentUser">
+    <user-playlist/>
   </div>
 
 </template>
