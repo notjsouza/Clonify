@@ -115,7 +115,7 @@ export async function getPlaylist(){
 
         if(res.status === 200){
 
-            currentUserPlaylists.value = data;
+            currentUserPlaylists.value = data.items;
 
         }
 

@@ -9,21 +9,28 @@ import PreviewBanner from './components/PreviewBanner.vue';
 import LoginPopup from './components/LoginPopup.vue';
 import UserPlaylist from './components/UserPlaylist.vue';
 
-import { getCurrentUser } from './auth';
+import { 
+    getCurrentUser, 
+    getPlaylist
+} from './auth';
+
 import { ref } from 'vue';
 
 const currentUser = ref(undefined);
+const playlists = ref(undefined);
 
 /* initializes currentUser.value with the data from the getCurrentUser function */
 async function init(){
 
     currentUser.value = await getCurrentUser();
+    playlists.value = await getPlaylist();
 
 }
 
 init();
 
 console.log(currentUser);
+console.log(playlists);
 
 </script>
 
