@@ -37,7 +37,7 @@ console.log(playlists);
 <template>
 
   <sidebar-top/>
-  <sidebar-bot :user="currentUser"/>
+  <sidebar-bot :user="currentUser" :playlists="'playlists'"/>
   <main-container :user="currentUser" />
 
   <!-- properties that show if user IS NOT logged in -->
@@ -49,7 +49,7 @@ console.log(playlists);
 
   <!-- properties display if the user IS logged in -->
   <div v-if="currentUser">
-    <user-playlist/>
+    <user-playlist :playlists="playlists"/>
   </div>
 
 </template>

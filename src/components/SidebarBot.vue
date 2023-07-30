@@ -17,7 +17,7 @@ library.add(faBook);
 
 export default {
 
-    props: ['user']
+    props: ['user', 'playlists']
 
 };
 
@@ -39,6 +39,7 @@ export default {
     </div>
 
     <!-- creates a subcontainer to hold the create playlist info -->
+    <!-- VISIBLE ONLY WHEN NOT LOGGED IN -->
     <div class="create-playlist" v-if="!user">
       <div class="text">
         <h6>Create your first playlist</h6>
@@ -50,6 +51,7 @@ export default {
     </div>
 
     <!-- creates a subcontainer to hold the browse playlist info -->
+    <!-- VISIBLE ONLY WHEN NOT LOGGED IN -->
     <div class="browse-podcast" v-if="!user">
       <div class="text">
         <h6>Let's find some podcasts to follow</h6>
@@ -57,6 +59,28 @@ export default {
       </div>
       <div class="button">
         <button>Browse podcasts</button>
+      </div>
+    </div>
+
+    <!-- <div class="user-playlists" v-if="user">
+      <div class="playlist" :key="playlists[0].id">
+        <img :src="playlists[0]?.img[0]?.url"/>
+        <div class="play">
+          <font-awesome-icon :icon="['fas', 'play']"/>
+        </div>
+        <h4>{{playlists[0].name}}</h4>
+      </div>
+    </div> -->
+
+    <div class="list" v-if="playlists">
+      <div class="item" v-for="i in 6" :key="playlists[i].id">
+        <div class="item-image">
+            <img :src="playlists[i]?.images[0]?.url"/>
+            <div class="play">
+                <font-awesome-icon :icon="['fas', 'play']" />
+            </div>
+            <h4>{{playlists[i].name}}</h4>
+        </div>
       </div>
     </div>
 
