@@ -12,18 +12,14 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 /* add icons to the library */
 library.add(faPlay);
 
-import { getPlaylist } from '../auth';
-import { ref } from 'vue';
+</script>
 
-const playlists = ref(undefined);
+<script>
+export default {
 
-async function init(){
+    props: ['playlists']
 
-    playlists.value = await getPlaylist();
-  
-}
-
-init();
+};
 
 </script>
 
