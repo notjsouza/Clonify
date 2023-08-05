@@ -38,8 +38,9 @@ export default {
       </ul>
     </div>
 
+<!------------------ VISIBLE WHEN NOT LOGGED IN ------------------->
+
     <!-- creates a subcontainer to hold the create playlist info -->
-    <!-- VISIBLE ONLY WHEN NOT LOGGED IN -->
     <div class="create-playlist" v-if="!user">
       <div class="text">
         <h6>Create your first playlist</h6>
@@ -51,7 +52,6 @@ export default {
     </div>
 
     <!-- creates a subcontainer to hold the browse playlist info -->
-    <!-- VISIBLE ONLY WHEN NOT LOGGED IN -->
     <div class="browse-podcast" v-if="!user">
       <div class="text">
         <h6>Let's find some podcasts to follow</h6>
@@ -62,30 +62,8 @@ export default {
       </div>
     </div>
 
-    <!-- <div class="user-playlists" v-if="user">
-      <div class="playlist" :key="playlists[0].id">
-        <img :src="playlists[0]?.img[0]?.url"/>
-        <div class="play">
-          <font-awesome-icon :icon="['fas', 'play']"/>
-        </div>
-        <h4>{{playlists[0].name}}</h4>
-      </div>
-    </div> -->
-
-    <div class="list" v-if="playlists">
-      <div class="item" v-for="i in 6" :key="playlists[i].id">
-        <div class="item-image">
-            <img :src="playlists[i]?.images[0]?.url"/>
-            <div class="play">
-                <font-awesome-icon :icon="['fas', 'play']" />
-            </div>
-            <h4>{{playlists[i].name}}</h4>
-        </div>
-      </div>
-    </div>
-
     <!-- writes the policies information on the bottom left of the screen -->
-    <div class="policies">
+    <div class="policies" v-if="!user">
       <ul>
         <li>
           <a href="#">Legal</a>
@@ -116,6 +94,31 @@ export default {
         </li>
       </ul>
     </div>
+
+<!-------------------------------------------------------------------->
+<!----------------- VISIBLE WITH USER PLAYLIST DATA ------------------>
+
+    <!-- accesses the playlist object to display the user's playlists -->
+    <div class="user-playlists" v-if="playlists">
+      <div class="item" v-for="playlist in playlists" :key="playlist.id">
+        <div class="playlist">
+          <div class="item-image">
+            <img :src="playlist.images[0]?.url"/>
+            <div class="playlist-details">
+              <h4>{{playlist.name}}</h4>
+              <div class="type-author">
+                <h6>{{playlist.type}}</h6>
+                <h6>*</h6>
+                <h6>{{playlist.owner.display_name}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-------------------------------------------------------------------->
+
   </div>
 </template>
 
@@ -133,60 +136,60 @@ export default {
   border-radius: 10px;
 }
 
-.sidebar-bot .navigation ul {
+.navigation ul {
   list-style: none;
 }
 
-.sidebar-bot .navigation ul li {
+.navigation ul li {
   padding: 12px 0px;
 }
 
-.sidebar-bot .navigation ul li a {
+.navigation ul li a {
   color: #b3b3b3;
   text-decoration: none;
   font-weight: bold;
   font-size: 21px;
 }
 
-.sidebar-bot .navigation ul li a:hover,
-.sidebar-bot .navigation ul li a:active,
-.sidebar-bot .navigation ul li a:focus {
+.navigation ul li a:hover,
+.navigation ul li a:active,
+.navigation ul li a:focus {
   color: #ffffff;
 }
 
-.sidebar-bot .navigation ul li a:hover .fa,
-.sidebar-bot .navigation ul li a:active .fa,
-.sidebar-bot .navigation ul li a:focus .fa {
+.navigation ul li a:hover .fa,
+.navigation ul li a:active .fa,
+.navigation ul li a:focus .fa {
   color: #ffffff;
 }
 
-.sidebar-bot .navigation ul li .fa {
+.navigation ul li .fa {
   font-size: 20px;
   margin-right: 10px;
 }
 
-.sidebar-bot .navigation ul li a:hover .fa:hover,
-.sidebar-bot .navigation ul li a:active .fa:active,
-.sidebar-bot .navigation ul li a:focus .fa:focus {
+.navigation ul li a:hover .fa:hover,
+.navigation ul li a:active .fa:active,
+.navigation ul li a:focus .fa:focus {
   color: #ffffff;
 }
 
-.sidebar-bot .policies {
+.policies {
   position: absolute;
   display: inline;
   bottom: 100px;
 }
 
-.sidebar-bot .policies ul {
+.policies ul {
   list-style: none;
 }
 
-.sidebar-bot .policies ul li {
+.policies ul li {
   padding-bottom: 5px;
   display: inline-block;
 }
 
-.sidebar-bot .policies ul li a {
+.policies ul li a {
   color: #b3b3b3;
   font-weight: 400;
   text-decoration: none;
@@ -268,6 +271,63 @@ export default {
   border: 0px;
   border-radius: 40px;
   cursor: pointer;
+}
+
+.user-playlists {
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+.playlist {
+  min-width: 140px;
+  background-color: #121212;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all ease 0.4s;
+}
+
+.playlist:hover {
+  background-color: #1a1a1a;
+}
+
+.playlist img {
+  padding: 5px;
+  width: 15%;
+  border-radius: 6px;
+}
+
+.item-image {
+  position: relative;
+  display: flex;
+}
+
+.playlist-details h4 {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.type-author {
+  position: relative;
+  display: flex;
+}
+
+.type-author h6 {
+  color: #a7a7a7;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.type-author h6:first-letter{
+  text-transform: uppercase;
 }
 
 </style>
