@@ -9,6 +9,7 @@ import PreviewBanner from './components/PreviewBanner.vue';
 import LoginPopup from './components/LoginPopup.vue';
 import UserPlaylist from './components/UserPlaylist.vue';
 
+// importing necessary functions from auth.js
 import { 
     getCurrentUser, 
     getPlaylist
@@ -16,6 +17,7 @@ import {
 
 import { ref } from 'vue';
 
+// creates both constants to store values from auth.js calls
 const currentUser = ref(undefined);
 const playlists = ref(undefined);
 
@@ -37,7 +39,7 @@ console.log(playlists);
 <template>
 
   <sidebar-top/>
-  <sidebar-bot :user="currentUser" :playlists="'playlists'"/>
+  <sidebar-bot :user="currentUser" :playlists="playlists"/>
   <main-container :user="currentUser" />
 
   <!-- properties that show if user IS NOT logged in -->
