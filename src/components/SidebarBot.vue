@@ -102,7 +102,7 @@ export default {
     <div class="user-playlists" v-if="playlists">
       <div class="item" v-for="playlist in playlists" :key="playlist.id">
         <div class="playlist">
-          <div class="item-image">
+          <div class="contents">
             <img :src="playlist.images[0]?.url"/>
             <div class="playlist-details">
               <h4>{{playlist.name}}</h4>
@@ -296,7 +296,7 @@ export default {
   border-radius: 6px;
 }
 
-.item-image {
+.contents {
   position: relative;
   display: flex;
 }
