@@ -61,7 +61,7 @@ export default {
   padding: 16px 0px;
 }
 
-.spotify-playlists .list {
+.list {
   display: flex;
   gap: 22px;
   overflow: hidden;
@@ -70,7 +70,7 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.spotify-playlists .list .item {
+.item {
   min-width: 140px;
   background-color: #2c2b2c;
   border-radius: 6px;
@@ -78,21 +78,21 @@ export default {
   transition: all ease 0.4s;
 }
 
-.spotify-playlists .list .item:hover {
+.item:hover {
   background-color: #434343;
 }
 
-.spotify-playlists .list .item img {
+.item img {
   width: 20%;
   border-radius: 6px;
 }
 
-.spotify-playlists .list .item .item-image {
+.item-image {
   position: relative;
   display: flex;
 }
 
-.spotify-playlists .list .item-image h4 {
+.item-image h4 {
   color: #ffffff;
   padding: 5px 5px;
   font-size: 18px;
@@ -103,7 +103,7 @@ export default {
   text-overflow: ellipsis;
 }
 
-.spotify-playlists .list .item .play {
+.item .play {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -120,7 +120,7 @@ export default {
   transition: all ease 0.4s;
 }
 
-.spotify-playlists .list .item:hover .play {
+.item:hover .play {
   opacity: 1;
   transform: translateY(-20px);
 }

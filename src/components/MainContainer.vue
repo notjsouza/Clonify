@@ -89,7 +89,7 @@ export default {
     margin-right: 16px;
   }
 
-  .topbar .prev-next-buttons button {
+  .prev-next-buttons button {
     color: #7a7a7a;
     cursor: not-allowed;
     width: 34px;
@@ -101,22 +101,22 @@ export default {
     margin-right: 10px;
   }
 
-  .topbar .navbar {
+  .navbar {
     display: flex;
     align-items: center;
   }
 
-  .topbar .navbar ul {
+  .navbar ul {
     list-style: none;
   }
 
-  .topbar .navbar ul li {
+  .navbar ul li {
     display: inline-block;
     margin: 0px 8px;
     width: 70px;
   }
 
-  .topbar .navbar ul li a {
+  .navbar ul li a {
     color: #b3b3b3;
     text-decoration: none;
     font-weight: bold;
@@ -124,21 +124,21 @@ export default {
     letter-spacing: 1px;
   }
 
-  .topbar .navbar ul li a:hover,
-  .topbar .navbar ul li a:active,
-  .topbar .navbar ul li a:focus {
+  .navbar ul li a:hover,
+  .navbar ul li a:active,
+  .navbar ul li a:focus {
     color: #ffffff;
     font-size: 15px;
   }
 
-  .topbar .navbar ul li.divider {
+  .navbar ul li.divider {
     color: #ffffff;
     font-size: 26px;
     margin: 0px 20px;
     width: auto;
   }
 
-  .topbar .navbar button {
+  .navbar button {
     background-color: #ffffff;
     color: #000000;
     font-size: 16px;
@@ -150,23 +150,23 @@ export default {
     margin-right: 20px;
   }
 
-  .topbar .navbar button:hover,
-  .topbar .navbar button:active,
-  .topbar .navbar button:focus {
+  .navbar button:hover,
+  .navbar button:active,
+  .navbar button:focus {
     background-color: #f2f2f2;
   }
 
-  .topbar .navbar img {
+  .navbar img {
     border-radius: 100%;
     cursor: pointer;
   }
 
-  .topbar .navbar img:hover {
+  .navbar img:hover {
     width: 33px;
     height: 33px;
   }
 
-  .topbar .navbar img:active {
+  .navbar img:active {
     opacity: 0.8;
   }
 

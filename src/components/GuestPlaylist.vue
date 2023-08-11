@@ -203,13 +203,13 @@ library.add(faPlay);
   padding: 16px 0px;
 }
 
-.spotify-playlists .list {
+.list {
   display: flex;
   gap: 22px;
   overflow: hidden;
 }
 
-.spotify-playlists .list .item {
+.item {
   min-width: 140px;
   width: 185px;
   padding: 15px;
@@ -219,21 +219,21 @@ library.add(faPlay);
   transition: all ease 0.4s;
 }
 
-.spotify-playlists .list .item:hover {
+.item:hover {
   background-color: #252525;
 }
 
-.spotify-playlists .list .item img {
+.item img {
   width: 100%;
   border-radius: 6px;
   margin-bottom: 10px;
 }
 
-.spotify-playlists .list .item .item-image {
+.item-image {
   position: relative;
 }
 
-.spotify-playlists .list .item .play {
+.item .play {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -249,12 +249,12 @@ library.add(faPlay);
   transition: all ease 0.4s;
 }
 
-.spotify-playlists .list .item:hover .play {
+.item:hover .play {
   opacity: 1;
   transform: translateY(-20px);
 }
 
-.spotify-playlists .list .item h4 {
+.item h4 {
   color: #ffffff;
   font-size: 14px;
   font-weight: bold;
@@ -264,7 +264,7 @@ library.add(faPlay);
   text-overflow: ellipsis;
 }
 
-.spotify-playlists .list .item p {
+.item p {
   color: #989898;
   font-size: 13px;
   line-height: 20px;

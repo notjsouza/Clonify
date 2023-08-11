@@ -9,8 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 /* import specific icons */
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 
+/* imports the function to change the active playlist id from App.vue */
+import { getCurrentPlaylist } from '../App.vue';
+
 /* add icons to the library */
 library.add(faBook);
+
 </script>
 
 <script>
@@ -101,15 +105,16 @@ export default {
     <!-- accesses the playlist object to display the user's playlists -->
     <div class="user-playlists" v-if="playlists">
       <div class="item" v-for="playlist in playlists" :key="playlist.id">
-        <div class="playlist">
+        <div class="playlist" @click="getCurrentPlaylist(playlist)">
           <div class="contents">
             <img :src="playlist.images[0]?.url"/>
             <div class="playlist-details">
               <h4>{{playlist.name}}</h4>
               <div class="type-author">
-                <h6>{{playlist.type}}</h6>
-                <h6>*</h6>
-                <h6>{{playlist.owner.display_name}}</h6>
+                <ul>
+                  <h6>{{playlist.type}}</h6>
+                  <h6>{{playlist.owner.display_name}}</h6>
+                </ul>
               </div>
             </div>
           </div>
@@ -274,8 +279,15 @@ export default {
 }
 
 .user-playlists {
-  overflow: auto;
-  overflow-y: scroll;
+  width: 400px;
+  height: calc(100% - 140px);
+  overflow-y: auto;
+}
+
+.user-playlists::-webkit-scrollbar{
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .playlist {
@@ -302,6 +314,7 @@ export default {
 }
 
 .playlist-details h4 {
+  width: 350px;
   color: #ffffff;
   font-size: 14px;
   font-weight: bold;
@@ -311,7 +324,7 @@ export default {
   text-overflow: ellipsis;
 }
 
-.type-author {
+.type-author ul {
   position: relative;
   display: flex;
 }

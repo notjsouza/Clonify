@@ -7,19 +7,30 @@ import MainContainer from './components/MainContainer.vue';
 import GuestPlaylist from './components/GuestPlaylist.vue';
 import PreviewBanner from './components/PreviewBanner.vue';
 import LoginPopup from './components/LoginPopup.vue';
-import UserPlaylist from './components/UserPlaylist.vue';
+import UserPlaylistView from './components/UserPlaylistView.vue';
+import CurrentPlaylistView from './components/CurrentPlaylistView.vue';
 
 // importing necessary functions from auth.js
 import { 
     getCurrentUser, 
-    getPlaylist
+    getPlaylist,
+    getPlaylistDetails
 } from './auth';
 
 import { ref } from 'vue';
+import { EventEmitter } from "events";
 
-// creates both constants to store values from auth.js calls
+</script>
+
+<script>
+
+// creates constants to store values from auth.js calls
 const currentUser = ref(undefined);
 const playlists = ref(undefined);
+const currentPlaylist = ref(undefined);
+const currentPlaylistTracks = ref(undefined);
+
+const changeID = new EventEmitter();
 
 /* initializes currentUser.value with the data from the getCurrentUser function */
 async function init(){
@@ -31,8 +42,22 @@ async function init(){
 
 init();
 
-console.log(currentUser);
-console.log(playlists);
+console.log('user:', currentUser);
+console.log('playlists:', playlists);
+console.log('current playlist:', currentPlaylist);
+
+export function getCurrentPlaylist(p){
+
+    currentPlaylist.value = p;
+    changeID.emit("change");
+
+}
+
+changeID.on("change", async () => {
+
+    currentPlaylistTracks.value = await getPlaylistDetails(currentPlaylist.value);
+
+});
 
 </script>
 
@@ -49,9 +74,14 @@ console.log(playlists);
     <login-popup/>
   </div>
 
-  <!-- properties display if the user IS logged in -->
-  <div v-if="currentUser">
-    <user-playlist :playlists="playlists"/>
+  <!-- properties display if the user IS logged in AND there is no current playlist -->
+  <div v-if="currentUser && !currentPlaylist">
+    <user-playlist-view :playlists="playlists"/>
+  </div>  
+  
+  <!-- properties display if there IS a current playlist -->
+  <div v-if="currentPlaylist">
+    <current-playlist-view :playlist="currentPlaylist" :tracks="currentPlaylistTracks"/>
   </div>
 
 </template>
