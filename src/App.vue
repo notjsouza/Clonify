@@ -13,12 +13,10 @@ import CurrentPlaylistView from './components/CurrentPlaylistView.vue';
 // importing necessary functions from auth.js
 import { 
     getCurrentUser, 
-    getPlaylist,
-    getPlaylistDetails
+    getPlaylists,
 } from './auth';
 
 import { ref } from 'vue';
-import { EventEmitter } from "events";
 
 </script>
 
@@ -27,16 +25,20 @@ import { EventEmitter } from "events";
 // creates constants to store values from auth.js calls
 const currentUser = ref(undefined);
 const playlists = ref(undefined);
-const currentPlaylist = ref(undefined);
-const currentPlaylistTracks = ref(undefined);
+const currentPlaylistID = ref(undefined);
 
-const changeID = new EventEmitter();
 
 /* initializes currentUser.value with the data from the getCurrentUser function */
 async function init(){
 
     currentUser.value = await getCurrentUser();
-    playlists.value = await getPlaylist();
+    playlists.value = await getPlaylists();
+
+}
+
+function setCurrentPlaylistID(id){
+
+    currentPlaylistID.value = id;
 
 }
 
@@ -44,27 +46,14 @@ init();
 
 console.log('user:', currentUser);
 console.log('playlists:', playlists);
-console.log('current playlist:', currentPlaylist);
-
-export function getCurrentPlaylist(p){
-
-    currentPlaylist.value = p;
-    changeID.emit("change");
-
-}
-
-changeID.on("change", async () => {
-
-    currentPlaylistTracks.value = await getPlaylistDetails(currentPlaylist.value);
-
-});
+console.log('current playlist:', currentPlaylistID);
 
 </script>
 
 <template>
 
   <sidebar-top/>
-  <sidebar-bot :user="currentUser" :playlists="playlists"/>
+  <sidebar-bot :user="currentUser" :playlists="playlists" @playlistIDSelected="(playlistID) => { setCurrentPlaylistID(playlistID) }"/>
   <main-container :user="currentUser" />
 
   <!-- properties that show if user IS NOT logged in -->
@@ -75,13 +64,13 @@ changeID.on("change", async () => {
   </div>
 
   <!-- properties display if the user IS logged in AND there is no current playlist -->
-  <div v-if="currentUser && !currentPlaylist">
+  <div v-if="currentUser && !currentPlaylistID">
     <user-playlist-view :playlists="playlists"/>
   </div>  
   
   <!-- properties display if there IS a current playlist -->
-  <div v-if="currentPlaylist">
-    <current-playlist-view :playlist="currentPlaylist" :tracks="currentPlaylistTracks"/>
+  <div v-if="currentPlaylistID">
+    <current-playlist-view :playlistID="currentPlaylistID" />
   </div>
 
 </template>

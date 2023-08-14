@@ -9,9 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 /* import specific icons */
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 
-/* imports the function to change the active playlist id from App.vue */
-import { getCurrentPlaylist } from '../App.vue';
-
 /* add icons to the library */
 library.add(faBook);
 
@@ -105,7 +102,7 @@ export default {
     <!-- accesses the playlist object to display the user's playlists -->
     <div class="user-playlists" v-if="playlists">
       <div class="item" v-for="playlist in playlists" :key="playlist.id">
-        <div class="playlist" @click="getCurrentPlaylist(playlist)">
+        <div class="playlist" @click="$emit('playlistIDSelected', playlist.id)">
           <div class="contents">
             <img :src="playlist.images[0]?.url"/>
             <div class="playlist-details">

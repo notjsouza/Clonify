@@ -1,7 +1,15 @@
 <script setup>
 
-import { ref } from 'vue';
-import { getPlaylistAuthor } from '../auth';
+import { 
+    ref,
+    watch
+} from 'vue';
+
+import { 
+    getPlaylist,
+    getPlaylistAuthor,
+    getPlaylistTracks
+} from '../auth';
 
 // /* import the fontawesome core */
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -12,31 +20,42 @@ import { getPlaylistAuthor } from '../auth';
 // /* import specific icons */
 // import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
+const props = defineProps(['playlistID']);
+
+const playlist = ref(undefined);
+const playlistAuthor = ref(undefined);
+const tracks = ref(undefined);
+
+async function setPlaylist(id){
+
+    try {
+
+        playlist.value = await getPlaylist(id);
+        playlistAuthor.value = await getPlaylistAuthor(playlist.value.owner.id);
+        tracks.value = await getPlaylistTracks(id);
+    
+    } catch (error) {
+
+        console.log(error);
+    
+    }
+    
+}
+
+watch(() => {
+
+    return props.playlistID; 
+
+}, (newPlaylistID) => {
+ 
+    setPlaylist(newPlaylistID);
+
+});
+
+setPlaylist(props.playlistID);
+
 /* add icons to the library */
 // library.add(faPlay);
-
-</script>
-
-<script>
-
-const playlistAuthor = ref(undefined);
-
-export default {
-
-    props: ['playlist', 'track'],
-    watch: {
-        playlist: function(){
-
-            console.log('author:', playlistAuthor.value);
-
-            let cleaning = false;
-
-            getPlaylistAuthor(this.playlist.owner.id);
-            
-        
-        }
-    }
-};
 
 </script>
 
@@ -46,7 +65,7 @@ export default {
 
   <div class="spotify-playlist">
 
-    <div class="playlist-details">
+    <div class="playlist-details" v-if="playlist">
     
     <!------- the playlist image to be displayed at the top of the page ------->
 
@@ -64,9 +83,9 @@ export default {
 
         <!---- the container to hold the playlist data, listed horizontally ----->
 
-          <div class="user-data">
+          <div class="user-data" v-if="playlistAuthor">
             <ul>
-              <img :src="playlistAuthor?.images[0].url" width="25" height="25"/>
+              <img :src="playlistAuthor?.images[0]?.url" width="25" height="25" v-if="playlistAuthor.images.length > 0"/>
               <h3>{{playlistAuthor?.display_name}}</h3>
               <h3>{{playlist.tracks.total}} Tracks</h3>
             </ul>

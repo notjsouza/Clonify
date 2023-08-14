@@ -95,7 +95,36 @@ export async function getCurrentUser(){
 
 }
 
-export async function getPlaylist(){
+export async function getPlaylist(playlist_id){
+
+    const token = await getCode();
+
+    try {
+        
+        const res = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`, {
+            headers: {"Authorization": "Bearer " + token}
+        
+        });
+
+        const data = await res.json();
+
+        if(res.status === 200){
+
+            return data;
+
+        }
+
+    } catch (error) {
+        
+        console.log(error);
+
+    }
+
+    return undefined;
+
+}
+
+export async function getPlaylists(){
 
     if(currentUserPlaylists.value){
 
@@ -161,20 +190,14 @@ export async function getPlaylistAuthor(user_id){
 
 }
 
-export async function getPlaylistDetails(playlist){
-
-    if(playlist === null){
-
-        return null;
-
-    }
+export async function getPlaylistTracks(playlistID){
 
     let currentPlaylist;
     const token = await getCode();
 
     try {
         
-        const res = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`, {
+        const res = await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
             headers: {"Authorization": "Bearer " + token}
         
         });
