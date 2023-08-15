@@ -5,7 +5,7 @@ import SidebarTop from './components/SidebarTop.vue';
 import SidebarBot from './components/SidebarBot.vue';
 import MainContainer from './components/MainContainer.vue';
 import GuestPlaylist from './components/GuestPlaylist.vue';
-import PreviewBanner from './components/PreviewBanner.vue';
+import BottomBanner from './components/BottomBanner.vue';
 import LoginPopup from './components/LoginPopup.vue';
 import UserPlaylistView from './components/UserPlaylistView.vue';
 import CurrentPlaylistView from './components/CurrentPlaylistView.vue';
@@ -26,6 +26,7 @@ import { ref } from 'vue';
 const currentUser = ref(undefined);
 const playlists = ref(undefined);
 const currentPlaylistID = ref(undefined);
+const currentTrackID = ref(undefined);
 
 
 /* initializes currentUser.value with the data from the getCurrentUser function */
@@ -39,6 +40,12 @@ async function init(){
 function setCurrentPlaylistID(id){
 
     currentPlaylistID.value = id;
+
+}
+
+function setCurrentTrackID(id){
+
+    currentTrackID.value = id;
 
 }
 
@@ -59,7 +66,7 @@ console.log('current playlist:', currentPlaylistID);
   <!-- properties that show if user IS NOT logged in -->
   <div v-if="!currentUser">
     <guest-playlist/>
-    <preview-banner/>
+    <bottom-banner/>
     <login-popup/>
   </div>
 
@@ -70,7 +77,7 @@ console.log('current playlist:', currentPlaylistID);
   
   <!-- properties display if there IS a current playlist -->
   <div v-if="currentPlaylistID">
-    <current-playlist-view :playlistID="currentPlaylistID" />
+    <current-playlist-view :playlistID="currentPlaylistID" @trackSelected="(trackID) => { setCurrentTrackID(trackID) }"/>
   </div>
 
 </template>

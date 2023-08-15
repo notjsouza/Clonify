@@ -33,6 +33,7 @@ async function setPlaylist(id){
         playlist.value = await getPlaylist(id);
         playlistAuthor.value = await getPlaylistAuthor(playlist.value.owner.id);
         tracks.value = await getPlaylistTracks(id);
+        console.log('tracks:', tracks);
     
     } catch (error) {
 
@@ -99,8 +100,10 @@ setPlaylist(props.playlistID);
   </div>
 
     <div class="track-list" v-for="track in tracks" :key="track.id">
-      <div class="track-details">
-        <h6>{{track.track.name}}</h6>
+      <div class="track-details" @click="$emit('trackSelected', track.track.id)">
+        <img :src="track.track.album.images[0].url" width="40" height="40" v-if="track.track.album.images.length > 0" />
+        <h4>{{track.track.name}}</h4>
+        <h6>{{track.track.artists[0].name}}</h6>
       </div>
     </div>
 
