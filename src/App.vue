@@ -26,7 +26,7 @@ import { ref } from 'vue';
 const currentUser = ref(undefined);
 const playlists = ref(undefined);
 const currentPlaylistID = ref(undefined);
-const currentTrackID = ref(undefined);
+const currentTrack = ref(undefined);
 
 
 /* initializes currentUser.value with the data from the getCurrentUser function */
@@ -43,9 +43,9 @@ function setCurrentPlaylistID(id){
 
 }
 
-function setCurrentTrackID(id){
+function setCurrentTrack(track){
 
-    currentTrackID.value = id;
+    currentTrack.value = track;
 
 }
 
@@ -61,12 +61,12 @@ console.log('current playlist:', currentPlaylistID);
 
   <sidebar-top/>
   <sidebar-bot :user="currentUser" :playlists="playlists" @playlistIDSelected="(playlistID) => { setCurrentPlaylistID(playlistID) }"/>
-  <main-container :user="currentUser" />
+  <main-container :user="currentUser"/>
+  <bottom-banner :user="currentUser" :track="currentTrack"/>
 
   <!-- properties that show if user IS NOT logged in -->
   <div v-if="!currentUser">
     <guest-playlist/>
-    <bottom-banner/>
     <login-popup/>
   </div>
 
@@ -77,7 +77,7 @@ console.log('current playlist:', currentPlaylistID);
   
   <!-- properties display if there IS a current playlist -->
   <div v-if="currentPlaylistID">
-    <current-playlist-view :playlistID="currentPlaylistID" @trackSelected="(trackID) => { setCurrentTrackID(trackID) }"/>
+    <current-playlist-view :playlistID="currentPlaylistID" @trackSelected="(track) => { setCurrentTrack(track) }"/>
   </div>
 
 </template>
