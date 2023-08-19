@@ -77,17 +77,22 @@ setPlaylist(props.playlistID);
 
         <div class="playlist-contents">
 
-            <h3>{{playlist.type}}</h3>
-            <h2>{{playlist.name}}</h2>
-            <h4>{{playlist.description}}</h4>
+          <h3>{{playlist.type}}</h3>
+          <h2>{{playlist.name}}</h2>
+          <h4>{{playlist.description}}</h4>
 
         <!---- the container to hold the playlist data, listed horizontally ----->
 
           <div class="user-data" v-if="playlistAuthor">
+
             <ul>
+
               <img :src="playlistAuthor?.images[0]?.url" width="25" height="25" v-if="playlistAuthor.images.length > 0"/>
+
               <h3>{{playlistAuthor?.display_name}}</h3>
+
               <h3>{{playlist.tracks.total}} Tracks</h3>
+
             </ul>
 
           </div>
@@ -96,14 +101,24 @@ setPlaylist(props.playlistID);
 
       </div>
 
-  </div>
+    </div>
 
     <div class="track-list" v-for="track in tracks" :key="track.id">
+
       <div class="track-details" @click="$emit('trackSelected', track.track)">
+
         <img :src="track.track.album.images[0].url" width="40" height="40" v-if="track.track.album.images.length > 0" />
+
         <h4>{{track.track.name}}</h4>
-        <h6>{{track.track.artists[0].name}}</h6>
+
+        <div class="artists" v-for="artist in track.track.artists" :key="artist.id">
+
+          <h4>{{artist.name}}</h4>
+
+        </div>
+
       </div>
+
     </div>
 
   </div>

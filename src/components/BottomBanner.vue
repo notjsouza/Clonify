@@ -41,7 +41,9 @@ watch(() => {
       <img :src="currentTrack.album.images[0]?.url" />
       <div class="song-details">
         <h2>{{currentTrack.name}}</h2>
-        <h4>{{currentTrack.artists[0].name}}</h4>
+        <div class="artists" v-for="artist in currentTrack.artists" :key="artist.id">
+          <h4>{{artist.name}}</h4>
+        </div>
       </div>
 
     </div>
